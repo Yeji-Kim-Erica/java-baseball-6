@@ -4,6 +4,7 @@ import baseball.domain.Game;
 import baseball.domain.BaseballNumber;
 import baseball.domain.Match;
 import baseball.domain.Matches;
+import baseball.exception.NoMatchResultException;
 import baseball.util.NumberGenerator;
 
 import java.util.List;
@@ -31,6 +32,13 @@ public class BaseballService {
     public Matches match(Game game, String guessString) {
         BaseballNumber guessNumber = BaseballNumber.from(guessString);
         List<Match> matches = game.matchWithAnswer(guessNumber);
+        if (matches.isEmpty()) {
+            throw new NoMatchResultException();
+        }
         return Matches.from(matches);
+    }
+
+    public boolean isGameOver(Matches matches) {
+        return matches.getMatchCount(Match.STRIKE) == NUMBER_SIZE;
     }
 }

@@ -1,5 +1,8 @@
 package baseball.view;
 
+import baseball.domain.Match;
+import baseball.domain.Matches;
+
 /**
  * 프로그램의 콘솔 출력을 담당하는 클래스
  */
@@ -12,5 +15,25 @@ public class ConsoleOutputView implements OutputView {
     @Override
     public void printNumberInputPrompt() {
         System.out.print("숫자를 입력해주세요 : ");
+    }
+
+    @Override
+    public void printMatchResults() {
+        System.out.println("낫싱");
+    }
+
+    @Override
+    public void printMatchResults(Matches matches) {
+        for (Match match : Match.values()) {
+            int count = matches.getMatchCount(match);
+            if (count > 0) {
+                printMatchResult(match, count);
+            }
+        }
+        System.out.println();
+    }
+
+    private void printMatchResult(Match match, int count) {
+        System.out.printf("%d%s ", count, match.getMessage());
     }
 }

@@ -3,8 +3,8 @@ package baseball.domain;
 import baseball.exception.NoMatchingNumberException;
 
 public enum Match {
-    STRIKE("스트라이크"),
-    BALL("볼");
+    BALL("볼"),
+    STRIKE("스트라이크");
 
     private final String message;
 

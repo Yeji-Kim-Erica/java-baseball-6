@@ -2,6 +2,7 @@ package baseball.controller;
 
 import baseball.domain.Game;
 import baseball.domain.Matches;
+import baseball.exception.NoMatchResultException;
 import baseball.service.BaseballService;
 import baseball.view.InputView;
 import baseball.view.OutputView;
@@ -22,10 +23,28 @@ public class GameController {
 
     public void run() {
         outputView.printGameStartInstruction();
-        Game game = service.createGame();
+        startGame();
+    }
 
+    private void startGame() {
+        Game game = service.createGame();
+        boolean flag = false;
+        do {
+            boolean isGameOver = guess(game);
+            flag = !isGameOver;
+        } while (flag);
+    }
+
+    private boolean guess(Game game) {
         outputView.printNumberInputPrompt();
         String guessNumber = inputView.readGuessingNumber();
-        Matches matchResult = service.match(game, guessNumber);
+        try {
+            Matches matchResult = service.match(game, guessNumber);
+            outputView.printMatchResults(matchResult);
+            return service.isGameOver(matchResult);
+        } catch (NoMatchResultException e) {
+            outputView.printMatchResults();
+        }
+        return false;
     }
 }
