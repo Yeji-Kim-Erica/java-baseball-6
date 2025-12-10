@@ -7,4 +7,8 @@ public interface InputView {
     default String readGuessingNumber() {
         return null;
     };
+
+    default String readGameProceed() {
+        return null;
+    };
 }

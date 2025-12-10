@@ -10,4 +10,9 @@ public class ConsoleInputView implements InputView {
     public String readGuessingNumber() {
         return Console.readLine();
     }
+
+    @Override
+    public String readGameProceed() {
+        return Console.readLine();
+    }
 }

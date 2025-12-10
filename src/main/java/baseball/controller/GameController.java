@@ -23,8 +23,12 @@ public class GameController {
 
     public void run() {
         outputView.printGameStartInstruction();
-        startGame();
-        outputView.printGameEndInstruction();
+        boolean flag = false;
+        do {
+            startGame();
+            outputView.printGameEndInstruction();
+            flag = isStartingNewGame();
+        } while (flag);
     }
 
     private void startGame() {
@@ -47,5 +51,11 @@ public class GameController {
             outputView.printMatchResults();
         }
         return false;
+    }
+
+    private boolean isStartingNewGame() {
+        outputView.printGameProceedPrompt();
+        String gameProceed = inputView.readGameProceed();
+        return service.isStartingNewGame(gameProceed);
     }
 }

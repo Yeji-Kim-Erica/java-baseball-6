@@ -4,7 +4,8 @@ import baseball.domain.Game;
 import baseball.domain.BaseballNumber;
 import baseball.domain.Match;
 import baseball.domain.Matches;
-import baseball.exception.NoMatchResultException;
+import baseball.exception.*;
+import baseball.util.InputParser;
 import baseball.util.NumberGenerator;
 
 import java.util.List;
@@ -40,5 +41,21 @@ public class BaseballService {
 
     public boolean isGameOver(Matches matches) {
         return matches.getMatchCount(Match.STRIKE) == NUMBER_SIZE;
+    }
+
+    public boolean isStartingNewGame(String gameProceed) {
+        validateAnswer(gameProceed);
+        return gameProceed.equals("1");
+    }
+
+    private void validateAnswer(String gameProceed) {
+        try {
+            int answer = InputParser.parseToInt(gameProceed);
+            if (answer < 1 || answer > 2) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_ANSWER.getMessage());
+            }
+        } catch (InputNullOrBlankException | InputNotNumericException | InputNumberOverflowException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_ANSWER.getMessage());
+        }
     }
 }
