@@ -5,4 +5,6 @@ package baseball.view;
  */
 public interface OutputView {
     default void printGameStartInstruction() {};
+
+    default void printNumberInputPrompt() {};
 }

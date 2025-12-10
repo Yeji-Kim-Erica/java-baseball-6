@@ -25,4 +25,8 @@ public class BaseballService {
         BaseballNumber answer = new BaseballNumber(numbers);
         return new Game(answer);
     }
+
+    public void match(String guessString) {
+        BaseballNumber guessNumber = BaseballNumber.from(guessString);
+    }
 }

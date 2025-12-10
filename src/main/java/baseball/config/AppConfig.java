@@ -4,7 +4,9 @@ import baseball.controller.GameController;
 import baseball.service.BaseballService;
 import baseball.util.NumberGenerator;
 import baseball.util.RandomNumberGenerator;
+import baseball.view.ConsoleInputView;
 import baseball.view.ConsoleOutputView;
+import baseball.view.InputView;
 import baseball.view.OutputView;
 
 /**
@@ -14,12 +16,13 @@ public class AppConfig {
     private static class LazyHolder {
         public static final AppConfig INSTANCE = new AppConfig();
 
+        public static final InputView INPUT_VIEW = new ConsoleInputView();
         public static final OutputView OUTPUT_VIEW = new ConsoleOutputView();
 
         public static final NumberGenerator NUMBER_GENERATOR = new RandomNumberGenerator();
         public static final BaseballService SERVICE = new BaseballService(NUMBER_GENERATOR);
 
-        public static final GameController CONTROLLER = new GameController(OUTPUT_VIEW, SERVICE);
+        public static final GameController CONTROLLER = new GameController(INPUT_VIEW, OUTPUT_VIEW, SERVICE);
     }
 
     private AppConfig() {}
