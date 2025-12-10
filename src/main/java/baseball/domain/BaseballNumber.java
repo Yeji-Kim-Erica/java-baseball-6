@@ -42,6 +42,27 @@ public class BaseballNumber {
         return new BaseballNumber(numbers);
     }
 
+    public List<Match> match(BaseballNumber guess) {
+        List<Match> matches = new ArrayList<>();
+        for (int i = 0; i < NUMBER_SIZE; i++) {
+            int number = numbers.get(i);
+            boolean hasMatchingNumber = guess.contains(number);
+            boolean hasCorrectMatchIndex = guess.get(i) == number;
+            if (hasMatchingNumber) {
+                matches.add(Match.of(hasMatchingNumber, hasCorrectMatchIndex));
+            }
+        }
+        return matches;
+    }
+
+    private boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    private int get(int index) {
+        return numbers.get(index);
+    }
+
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);

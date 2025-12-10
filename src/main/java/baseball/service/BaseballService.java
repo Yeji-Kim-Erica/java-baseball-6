@@ -2,6 +2,8 @@ package baseball.service;
 
 import baseball.domain.Game;
 import baseball.domain.BaseballNumber;
+import baseball.domain.Match;
+import baseball.domain.Matches;
 import baseball.util.NumberGenerator;
 
 import java.util.List;
@@ -26,7 +28,9 @@ public class BaseballService {
         return new Game(answer);
     }
 
-    public void match(String guessString) {
+    public Matches match(Game game, String guessString) {
         BaseballNumber guessNumber = BaseballNumber.from(guessString);
+        List<Match> matches = game.matchWithAnswer(guessNumber);
+        return Matches.from(matches);
     }
 }

@@ -1,6 +1,7 @@
 package baseball.controller;
 
 import baseball.domain.Game;
+import baseball.domain.Matches;
 import baseball.service.BaseballService;
 import baseball.view.InputView;
 import baseball.view.OutputView;
@@ -25,6 +26,6 @@ public class GameController {
 
         outputView.printNumberInputPrompt();
         String guessNumber = inputView.readGuessingNumber();
-        service.match(guessNumber);
+        Matches matchResult = service.match(game, guessNumber);
     }
 }
