@@ -23,6 +23,7 @@ public class GameController {
         outputView.printGameStartInstruction();
         Game game = service.createGame();
 
+        outputView.printNumberInputPrompt();
         String guessNumber = inputView.readGuessingNumber();
         service.match(guessNumber);
     }
