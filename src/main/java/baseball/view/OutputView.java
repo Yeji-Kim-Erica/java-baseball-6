@@ -13,4 +13,6 @@ public interface OutputView {
     default void printMatchResults() {};
 
     default void printMatchResults(Matches matchResult) {};
+
+    default void printGameEndInstruction() {};
 }

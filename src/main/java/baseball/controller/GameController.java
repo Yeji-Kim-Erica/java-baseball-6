@@ -24,6 +24,7 @@ public class GameController {
     public void run() {
         outputView.printGameStartInstruction();
         startGame();
+        outputView.printGameEndInstruction();
     }
 
     private void startGame() {

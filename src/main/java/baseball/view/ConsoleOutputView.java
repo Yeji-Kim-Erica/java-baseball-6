@@ -33,6 +33,11 @@ public class ConsoleOutputView implements OutputView {
         System.out.println();
     }
 
+    @Override
+    public void printGameEndInstruction() {
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+    };
+
     private void printMatchResult(Match match, int count) {
         System.out.printf("%d%s ", count, match.getMessage());
     }
