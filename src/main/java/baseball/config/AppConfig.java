@@ -1,6 +1,9 @@
 package baseball.config;
 
 import baseball.controller.GameController;
+import baseball.service.BaseballService;
+import baseball.util.NumberGenerator;
+import baseball.util.RandomNumberGenerator;
 import baseball.view.ConsoleOutputView;
 import baseball.view.OutputView;
 
@@ -13,7 +16,10 @@ public class AppConfig {
 
         public static final OutputView OUTPUT_VIEW = new ConsoleOutputView();
 
-        public static final GameController CONTROLLER = new GameController(OUTPUT_VIEW);
+        public static final NumberGenerator NUMBER_GENERATOR = new RandomNumberGenerator();
+        public static final BaseballService SERVICE = new BaseballService(NUMBER_GENERATOR);
+
+        public static final GameController CONTROLLER = new GameController(OUTPUT_VIEW, SERVICE);
     }
 
     private AppConfig() {}
